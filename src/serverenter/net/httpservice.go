@@ -13,7 +13,7 @@ import (
 	"strconv"
 )
 
-//操作完成进行回调过滤 true进行过滤 false不进行过滤
+//操作进行前回调过滤 true进行过滤 false不进行过滤
 type CallbackBefore func(usr *UserManager.User, c *gin.Context) bool
 //操作完成后进行回调 status 表示操作状态 0 代表成功
 type CallbackAfter func(usr *UserManager.User, c *gin.Context, status int)
@@ -115,7 +115,7 @@ func (this *UserHttpServer) RegisterQuery(path string, callBefore CallbackBefore
 	}
 }
 
-//协程内部增加处理 处理完成功后，调用用户注册的回调函数
+//协程内部增加处理 处理完后，调用用户注册的回调函数
 func (this *UserHttpServer) add(usr *UserManager.User, c *gin.Context) {
 	if this.usrmgr != nil {
 		status := this.usrmgr.Add(usr)
@@ -125,7 +125,7 @@ func (this *UserHttpServer) add(usr *UserManager.User, c *gin.Context) {
 	}
 }
 
-//协程内部删除处理 处理完成功后，调用用户注册的回调函数
+//协程内部删除处理 处理完后，调用用户注册的回调函数
 func (this *UserHttpServer) del(usr *UserManager.User, c *gin.Context) {
 	if this.usrmgr != nil {
 		status := this.usrmgr.Del(usr)
@@ -135,7 +135,7 @@ func (this *UserHttpServer) del(usr *UserManager.User, c *gin.Context) {
 	}
 }
 
-//协程内部修改处理 处理完成功后，调用用户注册的回调函数
+//协程内部修改处理 处理完后，调用用户注册的回调函数
 func (this *UserHttpServer) modify(usr *UserManager.User, c *gin.Context) {
 	if this.usrmgr != nil {
 		status := this.usrmgr.Modify(usr)
@@ -145,7 +145,7 @@ func (this *UserHttpServer) modify(usr *UserManager.User, c *gin.Context) {
 	}
 }
 
-//协程内部查询处理 处理完成功后，调用用户注册的回调函数
+//协程内部查询处理 处理完后，调用用户注册的回调函数
 func (this *UserHttpServer) query(usr *UserManager.User, c *gin.Context) {
 	if  this.usrmgr != nil {
 		usrvec, status := this.usrmgr.Query(usr)
