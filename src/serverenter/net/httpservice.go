@@ -62,7 +62,8 @@ func (this *UserHttpServer) RegisterAdd(path string, callBefore CallbackBefore, 
 				//被应用程序过滤掉 不进行处理
 				return;
 			}
-			go this.add(usr, c)
+			//此处不能使用协程进行处理，若该函数返回，则框架代码会将其连接关闭
+			this.add(usr, c)
 		})
 	}
 }
@@ -78,7 +79,8 @@ func (this *UserHttpServer) RegisterDel(path string, callBefore CallbackBefore, 
 				//被应用程序过滤掉 不进行处理
 				return;
 			}
-			go this.del(usr, c)
+			//此处不能使用协程进行处理，若该函数返回，则框架代码会将其连接关闭
+			this.del(usr, c)
 		})
 	}
 }
@@ -94,7 +96,8 @@ func (this *UserHttpServer) RegisterModify(path string, callBefore CallbackBefor
 				//被应用程序过滤掉 不进行处理
 					return;
 				}
-				go this.modify(usr, c)
+				//此处不能使用协程进行处理，若该函数返回，则框架代码会将其连接关闭
+				this.modify(usr, c)
 			})
 	}
 }
@@ -110,7 +113,8 @@ func (this *UserHttpServer) RegisterQuery(path string, callBefore CallbackBefore
 				//被应用程序过滤掉 不进行处理
 				return;
 			}
-			go this.query(usr, c)
+			//此处不能使用协程进行处理，若该函数返回，则框架代码会将其连接关闭
+			this.query(usr, c)
 		})
 	}
 }
